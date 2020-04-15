@@ -3,13 +3,12 @@ package sarenza.login;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import sarenza.base.BaseComponent;
 
-import java.time.Duration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginComponent extends BaseComponent {
     final private By _inputFields=  MobileBy.className("android.widget.EditText");
@@ -18,9 +17,10 @@ public class LoginComponent extends BaseComponent {
     final private By _startToShoppingButton = MobileBy.id("home_page_text");
     final private By _gotoLoginButton = MobileBy.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.RelativeLayout");
     final private By _passwordForgotten = MobileBy.id("forget_password");
-
+    final private By _loginErrors = MobileBy.id("error");
+    final private By _passwordHint = MobileBy.id("password_hint_button");
     public LoginComponent(AndroidDriver driver) {
-       super(driver);
+       super(driver, "Failed to found element in Login component.");
     }
 
     /**
@@ -58,10 +58,11 @@ public class LoginComponent extends BaseComponent {
     public void closeRegionAlert(){
 
     }
-    public void gotoAccountCreationScreen(){
+    public CountrySelection gotoAccountCreationScreen(){
         _waiter.until(
                 ExpectedConditions.visibilityOfElementLocated(this._accountCreationButton)
         ).click();
+        return new CountrySelection(_driver);
     }
 
     public void goDefaultProductView(){
@@ -70,7 +71,7 @@ public class LoginComponent extends BaseComponent {
         ).click();
     }
 
-    public Boolean startToShopping(String country){
+    public Boolean startToShopping(String country)  {
         _waiter.until(ExpectedConditions.visibilityOfElementLocated(this._startToShoppingButton)).click();
         CountrySelection selectCountry = new CountrySelection(_driver);
         return selectCountry.selectCountry(country);
@@ -82,5 +83,36 @@ public class LoginComponent extends BaseComponent {
         ).click();
     }
 
+    public String getUserNameError(){
+       String error = _waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(this._loginErrors)
+        ).getText();
+       return error;
+    }
 
+    public String getPassword(){
+        String error = _waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(this._loginErrors)
+        ).getText();
+        return error;
+    }
+
+    public List<String> getUserNameAndPasswordErrors(){
+        String userNameError = _waiter.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(this._loginErrors)
+        ).get(0).getText();
+        String passwordError =  _waiter.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(this._loginErrors)
+        ).get(1).getText();
+        List<String> errors =  new ArrayList<String>();
+        errors.add(userNameError);
+        errors.add(passwordError);
+        return errors;
+    }
+
+    public void togglePasswordHint(){
+        _waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(this._passwordHint)
+        ).click();
+    }
 }

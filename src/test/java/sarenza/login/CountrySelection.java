@@ -12,29 +12,15 @@ import sarenza.base.BaseComponent;
 import java.time.Duration;
 import java.util.List;
 
-class CountrySelection extends BaseComponent {
+public class CountrySelection extends BaseComponent {
 
     final private By _listOfCountries = MobileBy.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout");
 
     CountrySelection(AndroidDriver driver){
-       super(driver);
+       super(driver, "Failed to found element in the country selection screen.");
     }
 
-    public Boolean selectCountry(String country){
-
-        List<WebElement> countries = _waiter.until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(_listOfCountries)
-        );
-
-        for(int index =1; index<countries.size();index++){
-            WebElement elt = _driver.findElement(MobileBy.xpath(String.format("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[%s]/android.widget.LinearLayout/android.widget.TextView", index)));
-            String text = elt.getText();
-            if(text.toLowerCase().contains(country.toLowerCase()))
-            {
-                elt.click();
-                return true;
-            }
-        }
-        return false;
+    public Boolean selectCountry(String country)  {
+      return  selectByText(country);
     }
 }

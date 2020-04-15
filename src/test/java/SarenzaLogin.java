@@ -10,7 +10,12 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import sarenza.account.CreateAccountBase;
+import sarenza.login.CountrySelection;
 import sarenza.login.LoginComponent;
+import sarenza.views.Filter;
+import sarenza.views.ListeProduits;
+import sarenza.views.ProductCatalogue;
 
 
 public class SarenzaLogin {
@@ -47,10 +52,32 @@ public class SarenzaLogin {
     }
 
     @Test
-    public void startShopping() {
+    public void startShopping()  {
         LoginComponent login = new LoginComponent(driver);
         Boolean isShoppingStarted = login.startToShopping("Belgique");
         Assert.assertEquals(isShoppingStarted, true);
+    }
+
+    @Test
+    public void createAccount() throws InterruptedException {
+        double max=100, min=1;
+        LoginComponent home = new LoginComponent(driver);
+        CountrySelection country =  home.gotoAccountCreationScreen();
+        country.selectCountry("France");
+        CreateAccountBase accountBase = new CreateAccountBase(driver);
+        double x = (Math.random()*((max-min)+1))+min;
+        accountBase.enterUserInfos(String.format("email%s@email.com", x),"Sarenza123","France","Homme");
+       ProductCatalogue catalogue= accountBase.submit();
+       ListeProduits listeProduits = catalogue.selectProductByDescription("Femme", "Chaussures","baskets");
+        //listeProduits.selectProduct();
+       Filter filter = listeProduits.filter();
+       filter.swipe();
+       // Assert.assertEquals(listeProduits.isDisplayed(), true);
+    }
+
+    @Test
+    public void swipe(){
+
     }
     @After
     public void tearDown() {
