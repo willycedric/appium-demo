@@ -7,11 +7,15 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Interaction;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.pagefactory.ByChained;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 
 public class BaseComponent {
@@ -120,7 +124,7 @@ public class BaseComponent {
     }
 
     protected void swipeScreen(By el) throws InterruptedException {
-        WebElement Panel = _waiter.until(ExpectedConditions.visibilityOfElementLocated(el));
+       /* WebElement Panel = _waiter.until(ExpectedConditions.visibilityOfElementLocated(el));
         Dimension dimension = Panel.getSize();
 
         int Anchor = Panel.getSize().getHeight()/2;
@@ -136,8 +140,33 @@ public class BaseComponent {
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
                 .moveTo(PointOption.point(scrollEnd, Anchor))
                 .release().perform();
+        Thread.sleep(3000);*/
+       test();
+    }
+    public void test() {
+       // WebDriverWait wait = new WebDriverWait(_driver, 10);
 
-        Thread.sleep(3000);
+       // WebElement screen = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("List Demo")));
+       // screen.click();
+
+        //wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("Altocumulus")));
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Interaction moveToStart = finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), 520, 1530);
+        Interaction pressDown = finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg());
+        Interaction moveToEnd = finger.createPointerMove(Duration.ofMillis(1000), PointerInput.Origin.viewport(), 520, 490);
+        Interaction pressUp = finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg());
+
+
+        Sequence swipe = new Sequence(finger, 0);
+        swipe.addAction(moveToStart);
+        swipe.addAction(pressDown);
+        swipe.addAction(moveToEnd);
+        swipe.addAction(pressUp);
+
+        _driver.perform(Arrays.asList(swipe));
+
+       // _driver.findElement(MobileBy.AccessibilityId("Stratus"));
     }
 
 

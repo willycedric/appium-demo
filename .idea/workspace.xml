@@ -2,41 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebff0879-3e75-4b86-a0bd-8cb23b8a5eaf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/sarenza/account/CreateAccountBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/Favoris.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/FicheProduitDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/Filter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/ListeProduits.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/MenuBar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/Panier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/ProductCatalogue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/ProductSizeDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_03_02_Sessions_After.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_03_02_Sessions_Before.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_04_02_Locator_Strategies_After.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_04_02_Locator_Strategies_Before.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_04_04_Waiting_For_Elements_After.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_04_04_Waiting_For_Elements_Before.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_04_05_Element_Basics_After.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_04_05_Element_Basics_Before.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_04_06_Page_Source_After.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_04_06_Page_Source_Before.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_04_09_Solution_After.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_04_09_Solution_Before.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_05_03_Touch_Actions_After.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_05_03_Touch_Actions_Before.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_05_05_Mobile_Web_After.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_05_05_Mobile_Web_Before.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_05_07_Solution_After.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Ch_05_07_Solution_Before.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/PresenceOfElementLocatedBy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/SarenzaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SarenzaLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/base/BaseComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/base/BaseComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/login/CountrySelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/login/CountrySelection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/login/ForgotPasswordComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/login/ForgotPasswordComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/login/LoginComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/login/LoginComponent.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,6 +15,16 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -209,7 +186,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -220,7 +199,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/sarenza/base/BaseComponent.java</url>
-          <line>122</line>
+          <line>126</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
