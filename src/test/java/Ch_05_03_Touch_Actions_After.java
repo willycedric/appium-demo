@@ -28,7 +28,7 @@ public class Ch_05_03_Touch_Actions_After {
     public void setUp() throws Exception {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("platformName", "Android");
-        caps.setCapability("platformVersion", "9");
+        caps.setCapability("platformVersion", "7.0");
         caps.setCapability("deviceName", "Android Emulator");
         caps.setCapability("automationName", "UiAutomator2");
         caps.setCapability("app", APP);
