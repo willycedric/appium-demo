@@ -10,13 +10,14 @@ import sun.rmi.runtime.Log;
 
 public class ListeProduits extends BaseComponent {
     final private By _buttonMultiView = MobileBy.id("shop_multi_view");
-    final private By _buttonFilter = MobileBy.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.widget.FrameLayout[2]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView");
-    final private By _productViewGroup = MobileBy.className("android.view.ViewGroup");
+    final private By _buttonFilter = formatResourceId("shop_filter_sort_layout");
+    final private By _productViewGroup = formatResourceId("product_list_item_image");
     final private By _itemFavorite = formatResourceId("product_list_item_favorite");
     final private By _productBrand = formatResourceId("productlist_brandName");
     final private By _productModel = formatResourceId("productlist_modelName");
     final private By _productPrice = formatResourceId("product_list_item_price");
     final private By _loginTrait = MobileBy.id("field");
+    final private By _articleCount = formatResourceId("shop_article_count");
     final private  By _filterTrait = formatResourceId("switcher");
     final private By _ficheProdutTrait = MobileBy.id("image_slider");
     public ListeProduits(AndroidDriver driver){
@@ -97,5 +98,9 @@ public class ListeProduits extends BaseComponent {
         );
         return new Filter(_driver);
 
+    }
+
+    public String getArticleCount(){
+        return getText(this._articleCount);
     }
 }

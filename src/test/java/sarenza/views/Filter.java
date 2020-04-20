@@ -1,7 +1,9 @@
 package sarenza.views;
 
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import sarenza.base.BaseComponent;
@@ -30,8 +32,34 @@ public class Filter extends BaseComponent {
     }
 
     public void swipe() throws InterruptedException {
-        swipeScreen(this._switcher);
+        swipeScreen(
+              this._switcher
+        );
     }
 
 
+    public void scrollToSwitch() {
+        AndroidElement switchElement = (AndroidElement)_waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        this._switcher
+                )
+        );
+       /* MobileElement item = (MobileElement) _waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        MobileBy.AndroidUIAutomator(
+                                "new UiScrollable(new UiSelector()).scrollIntoView("+
+                                        "new UiSelector().description(\"DEMARQUE SOLDES\"));"
+
+                        )
+                )
+        );*/
+        MobileElement item = (MobileElement) _driver.findElement(
+                MobileBy.AndroidUIAutomator(
+                        "new UiScrollable(new UiSelector()).scrollIntoView("+
+                                "new UiSelector().index(6));"
+
+                )
+        );
+
+    }
 }

@@ -108,7 +108,7 @@ public class BaseComponent {
     protected void clickAt(By locator, int index) {
         _waiter.until(
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(locator)
-        ).get(0).click();
+        ).get(index).click();
     }
 
     protected void enterValue(By locator, String value){
@@ -124,24 +124,35 @@ public class BaseComponent {
     }
 
     protected void swipeScreen(By el) throws InterruptedException {
-       /* WebElement Panel = _waiter.until(ExpectedConditions.visibilityOfElementLocated(el));
+        WebElement Panel = _waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(el)
+        );
+        int x = Panel.getLocation().getX();
+        int y = Panel.getLocation().getY();
+        TouchAction action = new TouchAction(_driver);
+        action.
+        press(PointOption.point(x,y))
+        .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+        .moveTo(PointOption.point(x+290,y))
+        .release()
+        .perform();
+       /* List<WebElement> Panels = _waiter.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(el));
+        WebElement Panel = Panels.get(Panels.size() - 1);
         Dimension dimension = Panel.getSize();
-
         int Anchor = Panel.getSize().getHeight()/2;
-
         Double ScreenWidthStart = dimension.getWidth() * 0.8;
         int scrollStart = ScreenWidthStart.intValue();
-
+       // _driver.manage().window().getPosition();
         Double ScreenWidthEnd = dimension.getWidth() * 0.2;
         int scrollEnd = ScreenWidthEnd.intValue();
-
+        System.out.println(String.format("start %s end %s", scrollStart, scrollEnd));
         new TouchAction((PerformsTouchActions) _driver)
-                .press(PointOption.point(scrollStart, Anchor))
+                .press(PointOption.point(0, 0))
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
-                .moveTo(PointOption.point(scrollEnd, Anchor))
+                .moveTo(PointOption.point(Panel.getLocation().getX(), Panel.getLocation().getY()))
                 .release().perform();
         Thread.sleep(3000);*/
-       test();
+
     }
     public void test() {
        // WebDriverWait wait = new WebDriverWait(_driver, 10);
@@ -163,7 +174,6 @@ public class BaseComponent {
         swipe.addAction(pressDown);
         swipe.addAction(moveToEnd);
         swipe.addAction(pressUp);
-
         _driver.perform(Arrays.asList(swipe));
 
        // _driver.findElement(MobileBy.AccessibilityId("Stratus"));

@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import sarenza.account.CreateAccountBase;
 import sarenza.login.CountrySelection;
 import sarenza.login.LoginComponent;
+import sarenza.views.FicheProduitDetails;
 import sarenza.views.Filter;
 import sarenza.views.ListeProduits;
 import sarenza.views.ProductCatalogue;
@@ -69,10 +70,7 @@ public class SarenzaLogin {
         accountBase.enterUserInfos(String.format("email%s@email.com", x),"Sarenza123","France","Homme");
        ProductCatalogue catalogue= accountBase.submit();
        ListeProduits listeProduits = catalogue.selectProductByDescription("Femme", "Chaussures","baskets");
-        //listeProduits.selectProduct();
-       Filter filter = listeProduits.filter();
-       filter.swipe();
-       // Assert.assertEquals(listeProduits.isDisplayed(), true);
+       listeProduits.selectProduct().swipe();
     }
 
     @Test

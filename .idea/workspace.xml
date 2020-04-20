@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ebff0879-3e75-4b86-a0bd-8cb23b8a5eaf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/SarenzaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SarenzaLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/base/BaseComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/base/BaseComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/views/FicheProduitDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/FicheProduitDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/views/Filter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/Filter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/views/ListeProduits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/ListeProduits.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -161,8 +166,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.SarenzaLogin.createAccount" />
-        <item itemvalue="Gradle.SarenzaLogin.startShopping" />
         <item itemvalue="Gradle.SarenzaLogin.login" />
+        <item itemvalue="Gradle.SarenzaLogin.startShopping" />
         <item itemvalue="Gradle.SarenzaLogin.login2" />
         <item itemvalue="Gradle.SarenzaLogin.test" />
       </list>
@@ -199,8 +204,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/sarenza/base/BaseComponent.java</url>
-          <line>126</line>
-          <option name="timeStamp" value="17" />
+          <line>129</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

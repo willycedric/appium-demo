@@ -11,9 +11,13 @@ public class FicheProduitDetails extends BaseComponent {
     final private By _buttonBack = MobileBy.id("image_back");
     final private By _productBrand = MobileBy.id("product_brand_textview");
     final private By _productModel = MobileBy.id("product_model_textview");
-    final private By _sizeSelector = MobileBy.id("product_size_select");
+    final private By _sizeSelector =formatResourceId("product_size_select");
+    final private By _sizeItem = formatResourceId("size_item_layout");
+    final private  By _sizeItemCheck = MobileBy.id("size_item_check");
     final private By _productDetailsButton = MobileBy.id("product_characteristics_button");
     final private By _addToBasketButton = MobileBy.id("ctaButton");
+    final private By _productColorVariant = MobileBy.id("product_color_variant_dialog_button");
+    final private By _productShare = MobileBy.id("product_share_button");
     final private By _customerReviewDetails = MobileBy.id("product_reviews_block");
     final private By _sarenzaAdvantageSection = MobileBy.id("product_advantages_block");
     final private By _productOtherColorSection = MobileBy.id("colored_products_recyclerview");
@@ -58,7 +62,20 @@ public class FicheProduitDetails extends BaseComponent {
     }
 
     public  void addToBasket(){
+        toggleSizeSelector();
+        //Select the first available item
+        _waiter.until(
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(this._sizeItem)
+        ).get(0).click();
+        //Wait until the check is displayed
+        _waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(this._sizeItemCheck)
+        );
         click(this._addToBasketButton);
+    }
+
+    public void swipe() throws InterruptedException {
+        swipeScreen(_productBrand);
     }
 
 
