@@ -24,6 +24,9 @@ public class SarenzaLogin {
 
     private AndroidDriver driver;
     private static final String APPIUM = "http://localhost:4723/wd/hub";
+    private double max=100, min=1, x;
+    private CreateAccountBase accountBase;
+    private ProductCatalogue catalogue;
     @Before
     public void setUp() throws Exception {
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -36,6 +39,14 @@ public class SarenzaLogin {
         caps.setCapability("newCommandTimeout","3000");
         driver = new AndroidDriver(new URL(APPIUM), caps);
         try { Thread.sleep(3000); } catch (Exception ign) {}
+        LoginComponent home = new LoginComponent(driver);
+        home.selectLaboC();
+        CountrySelection country =  home.gotoAccountCreationScreen();
+        country.selectCountry("France");
+         x = (Math.random()*((max-min)+1))+min;
+         accountBase = new CreateAccountBase(driver);
+         accountBase.enterUserInfos(String.format("email%s@email.com", x),"Sarenza123","France","Homme");
+         catalogue= accountBase.submit();
     }
 
     @Test
@@ -60,18 +71,38 @@ public class SarenzaLogin {
     }
 
     @Test
-    public void createAccount() throws InterruptedException {
-        double max=100, min=1;
-        LoginComponent home = new LoginComponent(driver);
-        CountrySelection country =  home.gotoAccountCreationScreen();
-        country.selectCountry("France");
-        CreateAccountBase accountBase = new CreateAccountBase(driver);
-        double x = (Math.random()*((max-min)+1))+min;
-        accountBase.enterUserInfos(String.format("email%s@email.com", x),"Sarenza123","France","Homme");
-       ProductCatalogue catalogue= accountBase.submit();
-       ListeProduits listeProduits = catalogue.selectProductByDescription("Femme", "Chaussures","baskets");
-       listeProduits.selectProduct().swipe();
+    public void createAccountAndFilterColor()  {
+       ListeProduits listeProduits = catalogue.selectProductByDescription("Homme", "Chaussures","Baskets");
+       Boolean filterMatches = listeProduits
+               .filter()
+               .selectColorByDescription("Jaune", "Vert","Beige")
+               .removeSelectedTag("Beige")
+               .checkTagForValues("Jaune","Vert");
+       Assert.assertEquals(filterMatches, true);
     }
+
+    @Test
+    public void createAccountAndFilterSize() {
+        ListeProduits listeProduits = catalogue.selectProductByDescription("Homme", "Chaussures","Baskets");
+        Boolean filterMatches = listeProduits
+                .filter()
+                .selectProductSizeByDescription("43","37")
+                .checkTagForValues("43","37");
+        Assert.assertEquals(filterMatches, true);
+    }
+
+    @Test
+    public void createAccountAndFilterByReduction() {
+        ListeProduits listeProduits = catalogue.selectProductByDescription("Homme", "Chaussures","Baskets");
+        Boolean filterMatches = listeProduits
+                .filter()
+                .selectColorByDescription("Blanc")
+                .selectProductSizeByDescription("43","37")
+                .selectProductReductionDescription("30%", "40%")
+                .checkTagForValues("30%","43", "40%", "Blanc");
+        Assert.assertEquals(filterMatches, true);
+    }
+
 
     @Test
     public void swipe(){

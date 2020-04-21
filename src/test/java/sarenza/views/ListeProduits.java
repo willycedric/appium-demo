@@ -92,6 +92,9 @@ public class ListeProduits extends BaseComponent {
     }
 
     public Filter filter(){
+        _waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(this._productViewGroup)
+        );
         click(this._buttonFilter);
         _waiter.until(
                 ExpectedConditions.visibilityOfElementLocated(this._filterTrait)

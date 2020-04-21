@@ -23,7 +23,9 @@ public class FicheProduitDetails extends BaseComponent {
     final private By _productOtherColorSection = MobileBy.id("colored_products_recyclerview");
     final private By _productPushSection = MobileBy.id("other_models_container");
     final private By _listeProductTrait = MobileBy.id("shop_multi_view");
-
+    final private By _goToBasket = MobileBy.id("toolbar_side_right");
+    final private By _basketTrait = MobileBy.id("ctaButton");
+    final  private By _basketBadge = MobileBy.id("toolbar_basket_badge");
     public FicheProduitDetails(AndroidDriver driver){
         super(driver, "Failed to find element from the fiche produit detaillés.");
     }
@@ -61,7 +63,10 @@ public class FicheProduitDetails extends BaseComponent {
         click(this._customerReviewDetails);
     }
 
-    public  void addToBasket(){
+    public  FicheProduitDetails addToBasket(){
+        _waiter.until(
+                verticalScrollDownUntilElementVisible(this._sizeSelector)
+        );
         toggleSizeSelector();
         //Select the first available item
         _waiter.until(
@@ -72,11 +77,18 @@ public class FicheProduitDetails extends BaseComponent {
                 ExpectedConditions.visibilityOfElementLocated(this._sizeItemCheck)
         );
         click(this._addToBasketButton);
+        return this;
     }
 
-    public void swipe() throws InterruptedException {
-        swipeScreen(_productBrand);
+    public Panier viewBasket(){
+        click(this._goToBasket);
+        _waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(this._basketTrait)
+        );
+        return new Panier(_driver);
     }
 
-
+    public String getBasketCount(){
+        return getText(this._basketBadge);
+    }
 }

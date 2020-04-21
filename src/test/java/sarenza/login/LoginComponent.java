@@ -19,10 +19,22 @@ public class LoginComponent extends BaseComponent {
     final private By _passwordForgotten = MobileBy.id("forget_password");
     final private By _loginErrors = MobileBy.id("error");
     final private By _passwordHint = MobileBy.id("password_hint_button");
+    final private By _logo = MobileBy.id("sarenza_logo");
+    final private By _laboC = MobileBy.xpath(" /hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ListView/android.widget.CheckedTextView[6]");
+    //MobileBy.xpath("/android.widget.ListView/[contains(@class, \"android.widget.CheckedTextView\") and normalize-space(text()) = \"LaboC\"]");
+
     public LoginComponent(AndroidDriver driver) {
        super(driver, "Failed to found element in Login component.");
     }
 
+    public  void selectLaboC(){
+        _waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(this._logo)
+        ).click();
+        _waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(this._laboC)
+        ).click();
+    }
     /**
      * Fill user informations on the login form
      * @param userName

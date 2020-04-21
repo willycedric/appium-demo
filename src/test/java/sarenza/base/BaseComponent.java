@@ -1,5 +1,6 @@
 package sarenza.base;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
@@ -10,7 +11,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Interaction;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.support.pagefactory.ByAll;
 import org.openqa.selenium.support.pagefactory.ByChained;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -48,16 +51,17 @@ public class BaseComponent {
     }
 
     protected Boolean selectByText(String text) {
-        List<WebElement> genders = _waiter.until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("android.widget.TextView"))
-        );
-        for(WebElement elt:genders){
+        _waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format("//android.widget.TextView[@text='%s']",text)))
+        ).click();
+        return  true;
+        /*for(WebElement elt:genders){
             if(elt.getText().toLowerCase().trim().contains(text.toLowerCase().trim())){
                 elt.click();
                 return true;
             }
         }
-       return false;
+       return false;*/
     }
 
     protected By formatResourceId(String id){
@@ -122,39 +126,8 @@ public class BaseComponent {
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(locator)
         ).get(index).getText();
     }
-
-    protected void swipeScreen(By el) throws InterruptedException {
-        WebElement Panel = _waiter.until(
-                ExpectedConditions.visibilityOfElementLocated(el)
-        );
-        int x = Panel.getLocation().getX();
-        int y = Panel.getLocation().getY();
-        TouchAction action = new TouchAction(_driver);
-        action.
-        press(PointOption.point(x,y))
-        .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
-        .moveTo(PointOption.point(x+290,y))
-        .release()
-        .perform();
-       /* List<WebElement> Panels = _waiter.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(el));
-        WebElement Panel = Panels.get(Panels.size() - 1);
-        Dimension dimension = Panel.getSize();
-        int Anchor = Panel.getSize().getHeight()/2;
-        Double ScreenWidthStart = dimension.getWidth() * 0.8;
-        int scrollStart = ScreenWidthStart.intValue();
-       // _driver.manage().window().getPosition();
-        Double ScreenWidthEnd = dimension.getWidth() * 0.2;
-        int scrollEnd = ScreenWidthEnd.intValue();
-        System.out.println(String.format("start %s end %s", scrollStart, scrollEnd));
-        new TouchAction((PerformsTouchActions) _driver)
-                .press(PointOption.point(0, 0))
-                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
-                .moveTo(PointOption.point(Panel.getLocation().getX(), Panel.getLocation().getY()))
-                .release().perform();
-        Thread.sleep(3000);*/
-
-    }
-    public void test() {
+    //Demo only
+    private void test() {
        // WebDriverWait wait = new WebDriverWait(_driver, 10);
 
        // WebElement screen = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId("List Demo")));
@@ -175,8 +148,169 @@ public class BaseComponent {
         swipe.addAction(moveToEnd);
         swipe.addAction(pressUp);
         _driver.perform(Arrays.asList(swipe));
+    }
+    protected ExpectedCondition<WebElement> horizontalScrollUntilElementMatches(WebElement from, String description ){
 
-       // _driver.findElement(MobileBy.AccessibilityId("Stratus"));
+        By locator = By.xpath(String.format("//android.widget.TextView[@text='%s']",description));
+        int x =0;
+        int y = from.getLocation().getY();
+        return new ExpectedCondition<WebElement>() {
+            @Override
+            public WebElement apply(WebDriver driver) {
+                try {
+                    TouchAction action = new TouchAction(_driver);
+                    int z=0;
+                    while(z<y){
+                        if(elementIfVisible(locator)){
+                            return _driver.findElement(locator);
+                        }else{
+                            z=z+50;
+                            action.
+                                    press(PointOption.point(x,y))
+                                    .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+                                    .moveTo(PointOption.point(x+z,y))
+                                    .release()
+                                    .perform();
+                        }
+                    }
+
+                } catch (StaleElementReferenceException e) {
+                    return null;
+                }
+                catch (NoSuchElementException e){
+                    return  null;
+                }
+                return null;
+            }
+
+
+
+            @Override
+            public String toString() {
+                return "scroll horizontally until visibility of element located by "+locator;
+            }
+        };
+    }
+    protected ExpectedCondition<WebElement> horizontalScrollUntilElementContains(WebElement from, String description ){
+
+        By locator = By.xpath(String.format("//android.widget.TextView[contains(@text,'%s')]",description));
+        int x =0;
+        int y = from.getLocation().getY();
+        return new ExpectedCondition<WebElement>() {
+            @Override
+            public WebElement apply(WebDriver driver) {
+                try {
+                    TouchAction action = new TouchAction(_driver);
+                    int z=0;
+                    while(z<y){
+                        if(elementIfVisible(locator)){
+                            return _driver.findElement(locator);
+                        }else{
+                            z=z+50;
+                            action.
+                                    press(PointOption.point(x,y))
+                                    .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+                                    .moveTo(PointOption.point(x+z,y))
+                                    .release()
+                                    .perform();
+                        }
+                    }
+
+                } catch (StaleElementReferenceException e) {
+                    return null;
+                }
+                catch (NoSuchElementException e){
+                    return  null;
+                }
+                return null;
+            }
+
+
+
+            @Override
+            public String toString() {
+                return "scroll horizontally until visibility of element located by "+locator;
+            }
+        };
+    }
+    protected   ExpectedCondition<WebElement> verticalScrollDownUntilElementVisible(final By locator){
+        return new ExpectedCondition<WebElement>() {
+            @Override
+            public WebElement apply(WebDriver driver) {
+                try {
+
+                    int x = _driver.manage().window().getPosition().getX();
+                    int y = _driver.manage().window().getSize().height;
+                    TouchAction action = new TouchAction(_driver);
+                    int z=0;
+                    while(z<y){
+                        if(elementIfVisible(locator)){
+                            return _driver.findElement(locator);
+                        }else{
+                            action.
+                                    press(PointOption.point(520,1530))
+                                    .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+                                    .moveTo(PointOption.point(520,490+z))
+                                    .release()
+                                    .perform();
+                        }
+                        z=z-50;
+                    }
+                } catch (StaleElementReferenceException e) {
+                    return null;
+                }
+                return null;
+            }
+
+            @Override
+            public String toString() {
+                return "scroll vertically until visibility of element located by " + locator;
+            }
+        };
+    }
+
+    protected   ExpectedCondition<WebElement> verticalScrollUpUntilElementVisible(final By locator){
+        return new ExpectedCondition<WebElement>() {
+            @Override
+            public WebElement apply(WebDriver driver) {
+                try {
+
+                    int x = _driver.manage().window().getPosition().getX();
+                    int y = _driver.manage().window().getSize().height;
+                    TouchAction action = new TouchAction(_driver);
+                    int z=0;
+                    while(z<y){
+                        if(elementIfVisible(locator)){
+                            return _driver.findElement(locator);
+                        }else{
+                            action.
+                                    press(PointOption.point(520,490+z))
+                                    .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+                                    .moveTo(PointOption.point(520,1530))
+                                    .release()
+                                .perform();
+                        }
+                        z=z-50;
+                    }
+                } catch (StaleElementReferenceException e) {
+                    return null;
+                }
+                return null;
+            }
+
+            @Override
+            public String toString() {
+                return "scroll vertically until visibility of element located by " + locator;
+            }
+        };
+    }
+
+    private Boolean elementIfVisible(By locator){
+        try{
+            return _driver.findElement(locator).isDisplayed();
+        }catch (Exception ex){
+            return false;
+        }
     }
 
 

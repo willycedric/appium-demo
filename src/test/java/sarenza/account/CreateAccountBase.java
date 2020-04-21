@@ -16,7 +16,7 @@ public class CreateAccountBase extends BaseComponent {
     final private By _buttonBack = MobileBy.id("image_back");
     final private By _title = MobileBy.id("toolbar_title");
     final private By _titleLabel = MobileBy.id("title_label");
-    final private By _submitButton = MobileBy.id("ctaText");
+    final private By _submitButton = MobileBy.id("sign_up_light");
     final private By _newsLetterYes = MobileBy.id("yes_button");
     final private By _newsLetterNo = MobileBy.id("no_button");
     final private By _emailField = MobileBy.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.EditText");
@@ -56,7 +56,7 @@ public class CreateAccountBase extends BaseComponent {
 
     public ProductCatalogue submit(){
         _waiter.until(
-                ExpectedConditions.visibilityOfElementLocated(this._submitButton)
+                verticalScrollDownUntilElementVisible(this._submitButton)
         ).click();
         _waiter.until(
                 ExpectedConditions.visibilityOfElementLocated(this._megaMenPager)
