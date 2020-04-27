@@ -12,7 +12,7 @@ import sarenza.views.ProductCatalogue;
 import java.util.List;
 
 
-public class CreateAccountBase extends BaseComponent {
+public class CreateAccountLightBase extends BaseComponent {
     final private By _buttonBack = MobileBy.id("image_back");
     final private By _title = MobileBy.id("toolbar_title");
     final private By _titleLabel = MobileBy.id("title_label");
@@ -26,7 +26,7 @@ public class CreateAccountBase extends BaseComponent {
     final private By _passwordHint = MobileBy.id("password_hint_button");
     final private By _basketIcon = MobileBy.className("android.widget.ImageView");
     private final By _megaMenPager = MobileBy.id("megaMenuPager");
-    public CreateAccountBase(AndroidDriver driver) {
+    public CreateAccountLightBase(AndroidDriver driver) {
         super(driver, "Failed to found element in the account creation screen.");
     }
 

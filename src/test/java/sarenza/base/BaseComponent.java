@@ -67,6 +67,9 @@ public class BaseComponent {
     protected By formatResourceId(String id){
         return  MobileBy.id(String.format("%s/%s", baseId, id));
     }
+    protected By formatNativeResourceId(String id){
+        return MobileBy.id(String.format("android:id/%s", id));
+    }
 
     public void enCeMoment(){
         _waiter.until(
@@ -312,6 +315,21 @@ public class BaseComponent {
             return false;
         }
     }
+
+    protected void longPress(Point point){
+        TouchAction action = new TouchAction(this._driver);
+        action.longPress(PointOption.point(point.getX(),point.getY()))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(100)))
+                .perform();
+    }
+
+    protected void tap(Point point){
+        TouchAction action = new TouchAction(this._driver);
+        action.tap(PointOption.point(point.getX(),point.getY()))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(100)))
+                .perform();
+    }
+
 
 
 }

@@ -5,7 +5,9 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import sarenza.account.CreateAccountFullBase;
 import sarenza.base.BaseComponent;
+import sarenza.login.LoginComponent;
 
 import java.util.List;
 
@@ -51,8 +53,18 @@ public class Panier extends BaseComponent {
        click(this._submitReductionButton);
     }
 
-    public void submitBaster(){
+    public PaiementInformation submitBasket(){
        click(this._submitBasketButton);
+
+       return new PaiementInformation(_driver);
+    }
+
+    public CreateAccountFullBase submitBasketWithLightAccount(){
+        click(this._submitBasketButton);
+        _waiter.until(
+                ExpectedConditions.visibilityOfElementLocated(MobileBy.id("title_label"))
+        );
+        return new CreateAccountFullBase(_driver);
     }
 
     public String getItemBrand(int index){

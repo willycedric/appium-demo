@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ebff0879-3e75-4b86-a0bd-8cb23b8a5eaf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/sarenza/account/CreateAccountFullBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/PaiementInformation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/SarenzaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SarenzaLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/account/CreateAccountBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/account/CreateAccountBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/account/CreateAccountBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/account/CreateAccountLightBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/base/BaseComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/base/BaseComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/login/LoginComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/login/LoginComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/views/FicheProduitDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/FicheProduitDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/views/Filter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/Filter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/views/ListeProduits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/ListeProduits.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/views/Panier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/Panier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sarenza/views/ProductSizeDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sarenza/views/ProductSizeDialog.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,47 +64,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.SarenzaLogin.createAccountAndFilterByReduction">
-    <configuration name="SarenzaLogin.createAccount" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;SarenzaLogin.createAccount&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":cleanTest" />
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="SarenzaLogin.createAccountAndFilter" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;SarenzaLogin.createAccountAndFilter&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":cleanTest" />
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.SarenzaLogin.migrationCompteLight">
     <configuration name="SarenzaLogin.createAccountAndFilterByReduction" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -164,13 +125,53 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="SarenzaLogin.displayBasket" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;SarenzaLogin.displayBasket&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="SarenzaLogin.migrationCompteLight" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;SarenzaLogin.migrationCompteLight&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.SarenzaLogin.migrationCompteLight" />
+        <item itemvalue="Gradle.SarenzaLogin.displayBasket" />
         <item itemvalue="Gradle.SarenzaLogin.createAccountAndFilterByReduction" />
         <item itemvalue="Gradle.SarenzaLogin.createAccountAndFilterSize" />
         <item itemvalue="Gradle.SarenzaLogin.createAccountAndFilterColor" />
-        <item itemvalue="Gradle.SarenzaLogin.createAccountAndFilter" />
-        <item itemvalue="Gradle.SarenzaLogin.createAccount" />
       </list>
     </recent_temporary>
   </component>
@@ -201,6 +202,15 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/sarenza/account/CreateAccountFullBase.java</url>
+          <line>135</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Remote">
         <watch expression="elt" />

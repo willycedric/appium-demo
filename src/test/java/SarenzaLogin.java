@@ -10,11 +10,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import sarenza.account.CreateAccountBase;
+import sarenza.account.CreateAccountLightBase;
 import sarenza.login.CountrySelection;
 import sarenza.login.LoginComponent;
-import sarenza.views.FicheProduitDetails;
-import sarenza.views.Filter;
 import sarenza.views.ListeProduits;
 import sarenza.views.ProductCatalogue;
 
@@ -25,7 +23,7 @@ public class SarenzaLogin {
     private AndroidDriver driver;
     private static final String APPIUM = "http://localhost:4723/wd/hub";
     private double max=100, min=1, x;
-    private CreateAccountBase accountBase;
+    private CreateAccountLightBase accountBase;
     private ProductCatalogue catalogue;
     @Before
     public void setUp() throws Exception {
@@ -40,11 +38,11 @@ public class SarenzaLogin {
         driver = new AndroidDriver(new URL(APPIUM), caps);
         try { Thread.sleep(3000); } catch (Exception ign) {}
         LoginComponent home = new LoginComponent(driver);
-        home.selectLaboC();
+        home.selectLabo("LaboA");
         CountrySelection country =  home.gotoAccountCreationScreen();
         country.selectCountry("France");
          x = (Math.random()*((max-min)+1))+min;
-         accountBase = new CreateAccountBase(driver);
+         accountBase = new CreateAccountLightBase(driver);
          accountBase.enterUserInfos(String.format("email%s@email.com", x),"Sarenza123","France","Homme");
          catalogue= accountBase.submit();
     }
@@ -103,6 +101,31 @@ public class SarenzaLogin {
         Assert.assertEquals(filterMatches, true);
     }
 
+    @Test
+    public void displayBasket(){
+        ListeProduits listeProduits = catalogue.selectProductByDescription("Homme", "Nouveautés","Mocassins");
+        Boolean isBasketDisplayed = listeProduits.selectProduct()
+                .addToBasket()
+                .viewBasket()
+                .isPanierDisplayed();
+        Assert.assertEquals(isBasketDisplayed, true);
+    }
+
+    @Test
+    public void migrationCompteLight() throws InterruptedException {
+        ListeProduits listeProduits = catalogue.selectProductByDescription("Homme", "Nouveautés","Mocassins");
+     listeProduits.selectProduct()
+                .addToBasket()
+                .viewBasket()
+                .submitBasketWithLightAccount()
+                .fillUserBirthInfo("test","test")
+                .fillDeliveryAddress("12 rue de l'église")
+                .fillPostCode("95110")
+                .fillCellPhone("0677178513")
+                .submitForm();
+
+
+    }
 
     @Test
     public void swipe(){

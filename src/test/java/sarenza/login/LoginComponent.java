@@ -20,19 +20,19 @@ public class LoginComponent extends BaseComponent {
     final private By _loginErrors = MobileBy.id("error");
     final private By _passwordHint = MobileBy.id("password_hint_button");
     final private By _logo = MobileBy.id("sarenza_logo");
-    final private By _laboC = MobileBy.xpath(" /hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ListView/android.widget.CheckedTextView[6]");
+    final private By _laboC = MobileBy.xpath(" /hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ListView/android.widget.CheckedTextView[2]");
     //MobileBy.xpath("/android.widget.ListView/[contains(@class, \"android.widget.CheckedTextView\") and normalize-space(text()) = \"LaboC\"]");
 
     public LoginComponent(AndroidDriver driver) {
        super(driver, "Failed to found element in Login component.");
     }
 
-    public  void selectLaboC(){
+    public  void selectLabo(String labo){
         _waiter.until(
                 ExpectedConditions.visibilityOfElementLocated(this._logo)
         ).click();
         _waiter.until(
-                ExpectedConditions.visibilityOfElementLocated(this._laboC)
+                ExpectedConditions.visibilityOfElementLocated(MobileBy.xpath(String.format("//android.widget.CheckedTextView[@text='%s']", labo)))
         ).click();
     }
     /**
